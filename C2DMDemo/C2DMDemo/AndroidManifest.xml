@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.renault.c2dm.demo"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="7" />
+    <!-- Déclare la permission que j'utilise -->
+	<permission 
+		android:name="com.renault.android.c2dm.permission.RECEIVE" 
+		android:protectionLevel="signature"
+		/>
+	<!-- Utilise la permission de recevoir des messages depuis C2DM Renault -->
+    <uses-permission android:name="com.renault.android.c2dm.permission.RECEIVE"/>
+
+	<!-- Déclare la permission spécifique à l'application. Permet à elle seul de recevoir les messages. -->
+    <permission 
+    	android:name="com.renault.c2dm.demo.permission.C2D_MESSAGE"
+    	android:protectionLevel="signature" />
+    <!-- Utilise cette permission. Permet d'être la seul application à recevoir le broadcast depuis C2DM -->
+    <uses-permission android:name="com.renault.c2dm.demo.permission.C2D_MESSAGE" />
+
+    <!-- Permission nécessaire pour communiquer avec l'application tier, pouvant envoyer des évènements -->
+	<uses-permission android:name="android.permission.INTERNET" />
+	
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name="DemoC2DMActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+		<!-- Le receiver des évènements C2DM -->
+		<!-- Indique que l'éméteur du broadcast doit avoir le privilège SEND pour être certain qu'il vient de C2DM. -->
+		<receiver 
+			android:name=".C2DMReceiver"
+  			android:permission="com.renault.android.c2dm.permission.SEND" 
+		>
+			<!-- Le filtre pour recevoir des données depuis C2DM Renault -->
+			<intent-filter>
+				<action android:name="com.renault.android.c2dm.intent.RECEIVE"/>
+				<category android:name="com.renault.c2dm.demo"/>
+			</intent-filter>
+			
+			<!-- Le filtre pour recevoir des données depuis C2DM Google (optionel) -->
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+				<category android:name="com.renault.c2dm.demo"/>
+			</intent-filter>
+			
+			<!-- Le filtre pour recevoir l'acquittement de l'enregistrement depuis C2DM Renault -->
+			<!-- Cela peut arriver à tous moment et plusieurs fois pour le même téléphone. -->
+			<!-- Il faut propager cet identifiant au serveur tier applicatif pour qu'il puisse envoyer des messages. -->
+			<intent-filter>
+				<action android:name="com.renault.android.c2dm.intent.REGISTRATION"/>
+				<category android:name="com.renault.c2dm.demo"/>
+			</intent-filter>
+			
+			<!--  Idem pour C2DM Google (optionel) -->
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+				<category android:name="com.renault.c2dm.demo"/>
+			</intent-filter>
+		</receiver>
+    </application>
+</manifest>

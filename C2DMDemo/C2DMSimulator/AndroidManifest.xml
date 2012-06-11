@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="fr.prados.android.c2dm"
+      android:versionCode="1"
+      android:versionName="1.0"
+      >
+    <uses-sdk android:minSdkVersion="7" />
+    <!-- La permission permettant de recevoir des évènements. -->
+	<permission 
+		android:name="fr.prados.android.c2dm.permission.RECEIVE" 
+		android:protectionLevel="signature"
+		/>
+    <!-- La permission permettant d'envoyer des messages broadcast.
+         Cette permission doit être vérifié dans les applications, 
+    	 dans le paramètre android:permission du marqueur receiver. -->
+ 	<permission 
+		android:name="fr.prados.android.c2dm.permission.SEND"
+	  	android:protectionLevel="signature"/>
+
+	<!-- Demande le privilège d'utiliser cette permission. -->
+     <uses-permission android:name="fr.prados.android.c2dm.permission.SEND"/>
+    
+    <!-- Demande le privilège de connexions à Internet pour communiquer avec le serveur C2DM PHP ou Autre -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application 
+    	android:icon="@drawable/icon" android:label="@string/app_name"
+    	android:process="fr.prados.android.c2dm"
+    >
+
+		<!-- Start when device boot -->
+		<receiver android:name="fr.prados.android.c2dm.BootAutoStarter">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+			</intent-filter>
+		</receiver>
+
+		<!-- The service to listen C2DM intent -->
+		<service 
+			android:name="fr.prados.android.c2dm.C2DMService" 
+			android:enabled="true" 
+		>
+			<!-- Demande d'enregistrement -->
+			<intent-filter>
+				<action android:name="fr.prados.android.c2dm.intent.REGISTER"/>
+			</intent-filter>
+			<!--  Demande de dés-enregistrement. (Ne fonctionne pas pour le moment) -->
+			<intent-filter>
+				<action android:name="fr.prados.android.c2dm.intent.UNREGISTER"/>
+			</intent-filter>
+		</service>
+
+    </application>
+</manifest>

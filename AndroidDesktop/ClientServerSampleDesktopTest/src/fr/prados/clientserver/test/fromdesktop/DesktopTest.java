@@ -1,10 +1,6 @@
 package fr.prados.clientserver.test.fromdesktop;
 
-import java.io.IOException;
-import java.net.UnknownHostException;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.prados.android.test.fordesktop.AdbDevice;

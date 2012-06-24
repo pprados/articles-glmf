@@ -1,6 +1,5 @@
 package fr.prados.android.test.fordesktop;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import junit.framework.TestCase;
@@ -8,7 +7,6 @@ import junit.framework.TestCase;
 public abstract class DesktopTestCase extends TestCase
 {
 	protected static final Logger LOG = Logger.getLogger(DesktopTestCase.class.getName());
-	private static final Level sLevel=Level.INFO;
 	
 	static Adb sAdb;
 	static String[] sDevicesNames;

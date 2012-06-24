@@ -91,7 +91,6 @@ extends android.test.InstrumentationTestRunner
 			else
 				classname=request.name.substring(0,index);
 			String methodname=request.name.substring(index+1);
-			Class<?> clazz=Class.forName(classname);
 			Method[] methods=Class.forName(classname).getMethods();
 			for (int i=0;i<methods.length;++i)
 			{

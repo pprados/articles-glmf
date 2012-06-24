@@ -1,6 +1,5 @@
 package fr.prados.clientserver.test;
 
-import android.os.Bundle;
 import android.test.ActivityInstrumentationTestCase2;
 import android.view.KeyEvent;
 import android.widget.Button;
@@ -43,16 +42,17 @@ public class LocalActivityTest extends ActivityInstrumentationTestCase2<ClientSe
 		mActivity.runOnUiThread(
 		      new Runnable() 
 		      {
-		        public void run() 
+		        @Override
+				public void run() 
 		        {
 		        	mToggleServer.requestFocus();
 		        }
 		      }
 		    );		
-		try { Thread.sleep(2000); } catch (Exception e){}
+		getInstrumentation().waitForIdleSync();
 		sendKeys(KeyEvent.KEYCODE_ENTER);
 		getInstrumentation().waitForIdleSync();
-		try { Thread.sleep(2000); } catch (Exception e){}
+		try { Thread.sleep(1000); } catch (Exception e){}
 		assertNotNull(mActivity.mServer);
 		assertTrue(mActivity.mServer.isAlive());
 	}

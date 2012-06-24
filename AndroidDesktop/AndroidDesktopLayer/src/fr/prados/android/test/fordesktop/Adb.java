@@ -113,7 +113,7 @@ public class Adb
 
 			return mrParentLocation + File.separator + SdkConstants.FN_ADB;
 		}
-
+		LOG.log(Level.SEVERE,"Can not detect adb process. Use -Dfr.prados.usbinvoke.bindir=<sdk> or or the ddms.jar from sdk");
 		return SdkConstants.FN_ADB;
 	}
 

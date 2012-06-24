@@ -47,16 +47,16 @@ public class ForDesktopActivtyTest extends DesktopActivityInstrumentationTestCas
 		mActivity.runOnUiThread(
 		      new Runnable() 
 		      {
-		        public void run() 
+		        @Override
+				public void run() 
 		        {
 		        	mToggleServer.requestFocus();
 		        }
 		      }
 		    );		
-		try { Thread.sleep(2000); } catch (Exception e){}
+		getInstrumentation().waitForIdleSync();
 		sendKeys(KeyEvent.KEYCODE_ENTER);
 		getInstrumentation().waitForIdleSync();
-		try { Thread.sleep(2000); } catch (Exception e){}
 		assertNotNull(mActivity.mServer);
 		assertTrue(mActivity.mServer.isAlive());
 		
@@ -65,9 +65,9 @@ public class ForDesktopActivtyTest extends DesktopActivityInstrumentationTestCas
 		Log.d(TAG,"receive notification");
 		
 		// Stop server
-		sendKeys(KeyEvent.KEYCODE_ENTER);
 		getInstrumentation().waitForIdleSync();
-		try { Thread.sleep(2000); } catch (Exception e){}
+		sendKeys(KeyEvent.KEYCODE_ENTER);
+		try { Thread.sleep(1000); } catch (Exception e){}
 		assertFalse(mActivity.mServer.isAlive());
 		assertNull(mActivity.mServer);
 	}
@@ -78,7 +78,8 @@ public class ForDesktopActivtyTest extends DesktopActivityInstrumentationTestCas
 		mActivity.runOnUiThread(
 		      new Runnable() 
 		      {
-		        public void run() 
+		        @Override
+				public void run() 
 		        {
 		          mEditIp.setText(ip);
 		          mConnect.requestFocus();

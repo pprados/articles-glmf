@@ -16,7 +16,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -351,10 +350,10 @@ public class AdbDeviceImpl implements AdbDevice
 		return monkeyResponse.substring(offset + 1);
 	}
 
-	private void executeSyncCommand(final String command, final LoggingOutputReceiver logger) throws TimeoutException, AdbCommandRejectedException, ShellCommandUnresponsiveException, IOException
-	{
-		mDevice.executeShellCommand(command, logger);
-	}
+//	private void executeSyncCommand(final String command, final LoggingOutputReceiver logger) throws TimeoutException, AdbCommandRejectedException, ShellCommandUnresponsiveException, IOException
+//	{
+//		mDevice.executeShellCommand(command, logger);
+//	}
 	private void executeAsyncCommand(final String command, final LoggingOutputReceiver logger)
 	{
 		executor.submit(new Runnable()

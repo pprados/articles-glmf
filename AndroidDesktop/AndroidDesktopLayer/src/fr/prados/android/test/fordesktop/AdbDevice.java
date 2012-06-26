@@ -8,7 +8,7 @@ import java.util.Map;
 public interface AdbDevice
 {
 	public void dispose();
-	public void connectApp(String packageName) throws UnknownHostException, IOException;
+	public void connectApp() throws UnknownHostException, IOException;
 	/**
 	 * Invoke method in android application.
 	 * 

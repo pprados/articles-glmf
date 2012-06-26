@@ -5,4 +5,5 @@ gen/
 .settings/*
 *~
 local.properties
+sms.apk
 .metadata/

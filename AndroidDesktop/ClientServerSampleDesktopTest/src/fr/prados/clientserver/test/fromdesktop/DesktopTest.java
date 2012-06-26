@@ -9,8 +9,6 @@ import fr.prados.android.test.fordesktop.DesktopTestCase;
 
 public class DesktopTest extends DesktopTestCase
 {
-	private static final String PACKAGENAME="fr.prados.clientserver.remotetest";
-	
 	public DesktopTest(String name)
 	{
 		super(name);
@@ -49,7 +47,7 @@ public class DesktopTest extends DesktopTestCase
 				"fr.prados.clientserver.test.fordesktop.ClientServerDesktopInstrumentationTestRunner");
 			
 			// Connect to the application for send 'execute' command via IP
-			getServer().connectApp(PACKAGENAME);
+			getServer().connectApp();
 
 			// Invoke ClientServerDesktopInstrumentationTestRunner.getIp()
 			String ip=(String)getServer().execute("getIp");

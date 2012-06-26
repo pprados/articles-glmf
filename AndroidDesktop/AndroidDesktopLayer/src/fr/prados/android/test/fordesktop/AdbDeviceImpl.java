@@ -45,7 +45,7 @@ public class AdbDeviceImpl implements AdbDevice
 
 	private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
-	private IDevice mDevice;
+	private final IDevice mDevice;
 
 	private Socket mMonkeySocket;
 
@@ -53,7 +53,7 @@ public class AdbDeviceImpl implements AdbDevice
 
 	private BufferedReader mMonkeyReader;
 
-	private int mLocalPort;
+	private final int mLocalPort;
 
 	private Socket mRemoteAppSocket;
 
@@ -458,19 +458,8 @@ public class AdbDeviceImpl implements AdbDevice
 	}
 
 	@Override
-	public void connectApp(String packageName) throws UnknownHostException, IOException
+	public void connectApp() throws UnknownHostException, IOException
 	{
-//		String result = shell("am instrument -r " + packageName
-//				+ "/fr.prados.usbinvoke.UsbInvokeInstrumentation");
-//		try
-//		{
-//			Thread.sleep(2000);
-//		}
-//		catch (InterruptedException e)
-//		{
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		mRemoteAppSocket = new Socket("127.0.0.1", mLocalPort);
 		mRemoteAppOutput = new ObjectOutputStream(mRemoteAppSocket.getOutputStream());
 		mRemoteAppInput = new ObjectInputStream(mRemoteAppSocket.getInputStream());

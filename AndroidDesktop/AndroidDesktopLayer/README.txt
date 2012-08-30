@@ -1,1 +1,0 @@
-To build the project, you use the lib ddms.lib, present in <android_sdk>/tools/lib.

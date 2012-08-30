@@ -1,0 +1,3 @@
+[submodule "AndroidDesktop"]
+	path = AndroidDesktop
+	url = https://code.google.com/p/articles-glmf.androiddesktop/
